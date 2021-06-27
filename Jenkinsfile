@@ -15,7 +15,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        sh 'scp /target/jenapp3 root@10.0.5.23:/opt/tomcat/webapps'
+        sh 'scp /target/jenapp3 root@10.0.5.204:/opt/tomcat/webapps'
       }
     }
 
