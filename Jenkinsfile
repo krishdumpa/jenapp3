@@ -15,7 +15,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        sh 'scp /target/jenapp3 root@10.0.5.204:/opt/tomcat/webapps'
+        sh 'scp /var/lib/jenkins/workspace/jenapp3-pipeline/target/jenapp3.war root@10.0.5.204:/opt/tomcat/webapps'
       }
     }
 
