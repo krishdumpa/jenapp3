@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('code checkout') {
       steps {
-        sh 'ls'
+        git(url: 'git@github.com:krishdumpa/jenapp3.git', branch: 'master')
       }
     }
 
