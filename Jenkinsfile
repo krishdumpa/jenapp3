@@ -12,6 +12,15 @@ pipeline {
         sh '/opt/maven38/bin/mvn clean package'
       }
     }
+    stage('Test') {
+      steps {
+        sh '/opt/maven38/bin/mvn test'
+      }
+      post{
+        always{
+          junit '**/*.xml'
+        }
+      }
 
     stage('deploy') {
       steps {
