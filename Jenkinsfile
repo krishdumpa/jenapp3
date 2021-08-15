@@ -11,6 +11,11 @@ pipeline {
       steps {
         sh '/opt/maven38/bin/mvn clean package'
       }
+      post{
+        success{
+          archiveArtifacts '**/*.war'
+        }
+      }
     }
     stage('test') {
       steps {
