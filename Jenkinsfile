@@ -12,12 +12,25 @@ pipeline {
         sh '/opt/maven38/bin/mvn clean package'
       }
     }
-
-    stage('deploy') {
+    stage('Upload artifactory to Nexus') {
       steps {
-        sh 'scp /var/lib/jenkins/workspace/jenapp3-pipeline/target/jenapp3.war root@10.0.5.204:/opt/tomcat/webapps'
+        nexusArtifactUploader artifacts: [
+            [
+                artifactId: 'jenapp3', 
+                classifier: '', 
+                file: 'target/jenapp3.war', 
+                type: 'war'
+            ]
+        ], 
+        credentialsId: 'nexus3', 
+        groupId: 'jenapp', 
+        nexusUrl: '10.0.3.35:8081', 
+        nexusVersion: 'nexus3', 
+        protocol: 'http', 
+        repository: 'http://nexus-alb-150549239.ap-southeast-1.elb.amazonaws.com/repository/simpleapp-release/', 
+        version: '1'
       }
     }
-
-  }
 }
+ # 
+#########
